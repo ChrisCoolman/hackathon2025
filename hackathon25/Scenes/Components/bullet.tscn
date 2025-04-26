@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://s1q7vavvwyq1"]
+[gd_scene load_steps=5 format=3 uid="uid://s1q7vavvwyq1"]
 
 [ext_resource type="Script" uid="uid://lhbkstb1mpeo" path="res://Scripts/Components/bullet.gd" id="1_1wk8m"]
 [ext_resource type="PackedScene" uid="uid://b66gyjq1ey1ox" path="res://Scenes/Components/attack_component.tscn" id="1_mjcmj"]
+[ext_resource type="Texture2D" uid="uid://bn5h3p6vclu3n" path="res://Assets/Water Guns/Projectile.png" id="3_nktle"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_buujw"]
+radius = 4.12311
 
 [node name="Bullet" type="Area2D" node_paths=PackedStringArray("AttackComponent")]
 script = ExtResource("1_1wk8m")
@@ -9,12 +13,11 @@ AttackComponent = NodePath("AttackComponent")
 
 [node name="AttackComponent" parent="." instance=ExtResource("1_mjcmj")]
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(-6, 0)
-color = Color(0.203922, 0.741176, 1, 1)
-polygon = PackedVector2Array(0, -6, 12, 0, 0, 5, 3, 0)
+[node name="Projectile" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+texture = ExtResource("3_nktle")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-6, -6, 6, 0, -6, 5, -3, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_buujw")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

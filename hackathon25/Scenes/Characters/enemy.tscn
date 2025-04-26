@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3dlj4lu1fnb8"]
+[gd_scene load_steps=10 format=3 uid="uid://b3dlj4lu1fnb8"]
 
 [ext_resource type="Script" uid="uid://cgjvvlpwclwbs" path="res://Scripts/Characters/enemy.gd" id="1_8cp46"]
 [ext_resource type="Texture2D" uid="uid://bb8x1f7b7us5h" path="res://icon.svg" id="1_4453e"]
 [ext_resource type="PackedScene" uid="uid://b66gyjq1ey1ox" path="res://Scenes/Components/attack_component.tscn" id="2_8cp46"]
+[ext_resource type="Shader" uid="uid://cl3f23dyxqxso" path="res://Resources/Shaders/greyscale.gdshader" id="2_13ioh"]
 [ext_resource type="PackedScene" uid="uid://1lrn7015het3" path="res://Scenes/Components/health_component.tscn" id="3_13ioh"]
 [ext_resource type="PackedScene" uid="uid://dtok6cx8h2jth" path="res://Scenes/Components/hitbox_component.tscn" id="4_gwe5h"]
 
@@ -12,13 +13,12 @@ radius = 17.1172
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cp46"]
 size = Vector2(26, 26)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gwe5h"]
+shader = ExtResource("2_13ioh")
+
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox") groups=["enemy"]]
 script = ExtResource("1_8cp46")
 hitbox = NodePath("HitboxComponent")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.203125, 0.203125)
-texture = ExtResource("1_4453e")
 
 [node name="AttackComponent" parent="." instance=ExtResource("2_8cp46")]
 
@@ -32,3 +32,9 @@ shape = SubResource("CircleShape2D_tr4mm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_8cp46")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gwe5h")
+instance_shader_parameters/is_grey = true
+scale = Vector2(0.203125, 0.203125)
+texture = ExtResource("1_4453e")

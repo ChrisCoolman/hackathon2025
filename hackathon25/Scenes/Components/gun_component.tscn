@@ -1,20 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://rmuythb0pa2r"]
+[gd_scene load_steps=6 format=3 uid="uid://rmuythb0pa2r"]
 
 [ext_resource type="Script" uid="uid://btkecnoy8gq62" path="res://Scripts/Components/gun_component.gd" id="1_i4h0p"]
 [ext_resource type="PackedScene" uid="uid://s1q7vavvwyq1" path="res://Scenes/Components/bullet.tscn" id="2_i4h0p"]
+[ext_resource type="Texture2D" uid="uid://cocyqphpvbp42" path="res://Assets/Water Guns/SmallWaterGunsSpriteSheet.png" id="3_w4la5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4la5"]
+atlas = ExtResource("3_w4la5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fbf6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4la5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="GunComponent" type="Node2D"]
 script = ExtResource("1_i4h0p")
 bulletScene = ExtResource("2_i4h0p")
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(4, -2)
+position = Vector2(6, 0)
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(1, 0)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-5, -3, 3, -3, 3, -1, -3, -1, -3, 2, -5, 2)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_6fbf6")
+autoplay = "default"
+frame_progress = 0.356597
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

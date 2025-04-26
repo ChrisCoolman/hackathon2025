@@ -16,6 +16,9 @@ var cooldown = false
 func _ready() -> void:
 	$Timer.wait_time = shotCooldown
 
+func _process(delta: float) -> void:
+	look_at(get_global_mouse_position())
+
 func shoot():
 	print(reloading)
 	if mag > 0 and reloading == false and cooldown == false:

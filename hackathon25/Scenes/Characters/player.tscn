@@ -246,13 +246,13 @@ theme_override_font_sizes/font_size = 64
 text = "0"
 
 [node name="Projectile" type="Sprite2D" parent="CanvasLayer/HUD"]
-position = Vector2(1057, 585)
+position = Vector2(1067, 543)
 rotation = 1.5708
 scale = Vector2(5.07909, 5.07909)
 texture = ExtResource("4_utp2y")
 
 [node name="Heart" type="Sprite2D" parent="CanvasLayer/HUD"]
-position = Vector2(44.0001, 594)
+position = Vector2(59, 549)
 scale = Vector2(2.3125, 2.3125)
 texture = ExtResource("5_gdgf0")
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b3dlj4lu1fnb8"]
 
-[ext_resource type="Script" uid="uid://cgjvvlpwclwbs" path="res://Scenes/Characters/enemy.gd" id="1_8cp46"]
+[ext_resource type="Script" uid="uid://cgjvvlpwclwbs" path="res://Scripts/Characters/enemy.gd" id="1_8cp46"]
 [ext_resource type="Texture2D" uid="uid://bb8x1f7b7us5h" path="res://icon.svg" id="1_4453e"]
 [ext_resource type="PackedScene" uid="uid://b66gyjq1ey1ox" path="res://Scenes/Components/attack_component.tscn" id="2_8cp46"]
 [ext_resource type="PackedScene" uid="uid://1lrn7015het3" path="res://Scenes/Components/health_component.tscn" id="3_13ioh"]
@@ -24,7 +24,8 @@ texture = ExtResource("1_4453e")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_13ioh")]
 
-[node name="HitboxComponent" parent="." instance=ExtResource("4_gwe5h")]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_gwe5h")]
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_tr4mm")

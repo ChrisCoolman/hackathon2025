@@ -34,7 +34,7 @@ shape = SubResource("RectangleShape2D_al8ar")
 disabled = true
 
 [node name="GunComponent" parent="." instance=ExtResource("4_gy20a")]
-position = Vector2(6, 16)
+position = Vector2(17, -1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

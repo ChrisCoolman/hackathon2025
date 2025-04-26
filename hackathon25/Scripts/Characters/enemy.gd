@@ -25,7 +25,7 @@ func changeState(newState):
 	elif newState == States.Attack:
 		state = States.Attack
 		await get_tree().create_timer(attackWait).timeout
-		if self.position.distance_to(player[0].position) <= attackRange:
+		if is_instance_valid(player[0]) and self.position.distance_to(player[0].position) <= attackRange:
 			player[0].hitbox.damage($AttackComponent)
 		changeState(States.Move)
 			

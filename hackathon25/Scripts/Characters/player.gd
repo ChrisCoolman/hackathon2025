@@ -36,4 +36,5 @@ func _process(delta: float) -> void:
 		anim.play("idle")
 
 func kill():
+	get_tree().change_scene_to_file("res://Scenes/User Interface/main_menu.tscn")
 	queue_free()

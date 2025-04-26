@@ -15,6 +15,8 @@ func makePowerup():
 	var p = powerups[num].instantiate()
 	get_tree().root.add_child(p)
 	p.position = point.position
+	await get_tree().create_timer(5.0).timeout
+	makePowerup()
 
 func _on_enemy_spawner_spawner_killed() -> void:
 	spawners -= 1

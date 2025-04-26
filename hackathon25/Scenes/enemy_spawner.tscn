@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6w0252qca3rr"]
+[gd_scene load_steps=7 format=3 uid="uid://b6w0252qca3rr"]
 
 [ext_resource type="Script" uid="uid://b7aa3u2w6lbmv" path="res://Scripts/enemy_spawner.gd" id="1_gga2x"]
+[ext_resource type="PackedScene" uid="uid://b3dlj4lu1fnb8" path="res://Scenes/Characters/enemy.tscn" id="2_8cfj0"]
 [ext_resource type="PackedScene" uid="uid://1lrn7015het3" path="res://Scenes/Components/health_component.tscn" id="2_34w3q"]
 [ext_resource type="Texture2D" uid="uid://dbrsd0pl32xms" path="res://Assets/Objects/Free_Chicken_House.png" id="5_8cfj0"]
 [ext_resource type="StyleBox" uid="uid://0tnfm5v4gxtq" path="res://Resources/UI/progress_bar.tres" id="6_2cu8b"]
@@ -11,6 +12,7 @@ size = Vector2(34, 30.5)
 [node name="EnemySpawner" type="Area2D" node_paths=PackedStringArray("progressBar") groups=["spawner"]]
 script = ExtResource("1_gga2x")
 progressBar = NodePath("ProgressBar")
+enemyType = ExtResource("2_8cfj0")
 
 [node name="HealthComponent" parent="." groups=["spawner"] instance=ExtResource("2_34w3q")]
 MAX_HEALTH = 500.0
@@ -27,10 +29,10 @@ position = Vector2(0, -2.25)
 shape = SubResource("RectangleShape2D_pvfg8")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
 offset_left = -42.0
 offset_top = -38.0
 offset_right = 44.0
 offset_bottom = -27.0
 theme_override_styles/background = ExtResource("6_2cu8b")
+max_value = 500.0
 show_percentage = false

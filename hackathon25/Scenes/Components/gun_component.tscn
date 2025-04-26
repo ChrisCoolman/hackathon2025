@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://rmuythb0pa2r"]
+
+[ext_resource type="Script" uid="uid://btkecnoy8gq62" path="res://Scripts/Components/gun_component.gd" id="1_i4h0p"]
+[ext_resource type="PackedScene" uid="uid://s1q7vavvwyq1" path="res://Scenes/Components/bullet.tscn" id="2_i4h0p"]
+
+[node name="GunComponent" type="Node2D"]
+script = ExtResource("1_i4h0p")
+bulletScene = ExtResource("2_i4h0p")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 2, 1, 2, 1, -1, -0.402506, -1, -5, -1, -5, -3)
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(-5, -2)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

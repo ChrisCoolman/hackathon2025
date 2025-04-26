@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://rmuythb0pa2r"]
+[gd_scene load_steps=9 format=3 uid="uid://rmuythb0pa2r"]
 
 [ext_resource type="Script" uid="uid://btkecnoy8gq62" path="res://Scripts/Components/gun_component.gd" id="1_i4h0p"]
 [ext_resource type="PackedScene" uid="uid://s1q7vavvwyq1" path="res://Scenes/Components/bullet.tscn" id="2_i4h0p"]
@@ -19,6 +19,67 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_w4la5"]
+resource_name = "reload"
+length = 1.501
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.35, 0.53, 0.8, 1.03333, 1.05, 1.2, 1.501),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, -6), Vector2(0, -4), Vector2(0, -2), Vector2(0, 3), Vector2(0, 1), Vector2(0, 2.38419e-07), Vector2(0, 2.38419e-07)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.35, 0.53, 0.8, 1.03333, 1.05, 1.23333, 1.501),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.442976, -1.34677, -2.42123, -4.24394, -5.70465, -5.74504, -6.1894, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_djd04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6fbf6"]
+_data = {
+&"RESET": SubResource("Animation_djd04"),
+&"reload": SubResource("Animation_w4la5")
+}
+
 [node name="GunComponent" type="Node2D"]
 script = ExtResource("1_i4h0p")
 bulletScene = ExtResource("2_i4h0p")
@@ -33,5 +94,10 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_6fbf6")
 autoplay = "default"
 frame_progress = 0.356597
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6fbf6")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

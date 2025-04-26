@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum States {Idle, Move, Attack, Die}
 
 @onready var player = get_tree().get_nodes_in_group("player")
-@export var speed := 200.0
+@export var speed := 50.0
 @export var attackRange := 30.0
 @export var attackWait := 0.25
 
@@ -12,7 +12,8 @@ enum States {Idle, Move, Attack, Die}
 @export var hitbox : HitboxComponent
 
 func _ready() -> void:
-	$Sprite2D.set_instance_shader_parameter("Is Grey", true)
+	pass
+	#$Sprite2D.set_instance_shader_parameter("Is Grey", true)
 
 func changeState(newState):
 	if newState == States.Idle:
@@ -38,12 +39,13 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func _process(delta: float) -> void:
+	$ProgressBar.value = $HealthComponent.health
 	if is_instance_valid(player[0]) and self.position.distance_to(player[0].position) <= attackRange and state != States.Attack:
 		print("attacking")
 		changeState(States.Attack)
 
 func kill():
 	changeState(States.Die)
-	$Sprite2D.set_instance_shader_parameter("Is Grey", false)
+	#$Sprite2D.set_instance_shader_parameter("Is Grey", false)
 	await get_tree().create_timer(0).timeout
 	queue_free()

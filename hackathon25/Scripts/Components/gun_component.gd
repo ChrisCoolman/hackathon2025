@@ -7,7 +7,7 @@ class_name GunComponent
 @export var shotCooldown := 0.2 
 @export var damagePerShot := 10.0
 @export var magSize := 15
-@export var reloadTime := 2.0
+@export var reloadTime := 1.501
 @onready var mag = magSize
 
 var reloading = false
@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 
 func shoot():
-	print(reloading)
 	if mag > 0 and reloading == false and cooldown == false:
 		$Timer.start()
 		mag-=1
@@ -37,6 +36,7 @@ func makeBullet():
 	bullet.AttackComponent.attack_damage = damagePerShot
 
 func reload():
+	$AnimationPlayer.play("reload")
 	reloading = true
 	print("reloading")
 	await get_tree().create_timer(reloadTime).timeout

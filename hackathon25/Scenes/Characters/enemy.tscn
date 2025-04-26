@@ -1,20 +1,33 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3dlj4lu1fnb8"]
+[gd_scene load_steps=12 format=3 uid="uid://b3dlj4lu1fnb8"]
 
 [ext_resource type="Script" uid="uid://cgjvvlpwclwbs" path="res://Scripts/Characters/enemy.gd" id="1_8cp46"]
-[ext_resource type="Texture2D" uid="uid://bb8x1f7b7us5h" path="res://icon.svg" id="1_4453e"]
 [ext_resource type="PackedScene" uid="uid://b66gyjq1ey1ox" path="res://Scenes/Components/attack_component.tscn" id="2_8cp46"]
-[ext_resource type="Shader" uid="uid://cl3f23dyxqxso" path="res://Resources/Shaders/greyscale.gdshader" id="2_13ioh"]
 [ext_resource type="PackedScene" uid="uid://1lrn7015het3" path="res://Scenes/Components/health_component.tscn" id="3_13ioh"]
 [ext_resource type="PackedScene" uid="uid://dtok6cx8h2jth" path="res://Scenes/Components/hitbox_component.tscn" id="4_gwe5h"]
+[ext_resource type="Texture2D" uid="uid://c526oxm38x7og" path="res://Assets/Objects/Basic_Plants.png" id="5_13ioh"]
+[ext_resource type="Texture2D" uid="uid://ce0phlxinr4kt" path="res://Assets/Objects/frowny.png" id="6_gwe5h"]
+[ext_resource type="StyleBox" uid="uid://0tnfm5v4gxtq" path="res://Resources/UI/progress_bar.tres" id="7_gwe5h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tr4mm"]
-radius = 17.1172
+radius = 6.08276
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cp46"]
-size = Vector2(26, 26)
+size = Vector2(12, 12)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gwe5h"]
-shader = ExtResource("2_13ioh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr4mm"]
+atlas = ExtResource("5_13ioh")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t03nw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr4mm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox") groups=["enemy"]]
 script = ExtResource("1_8cp46")
@@ -33,8 +46,18 @@ shape = SubResource("CircleShape2D_tr4mm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_8cp46")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_gwe5h")
-instance_shader_parameters/is_grey = true
-scale = Vector2(0.203125, 0.203125)
-texture = ExtResource("1_4453e")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t03nw")
+
+[node name="Frowny" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_gwe5h")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -19.0
+offset_top = -13.0
+offset_right = 20.0
+offset_bottom = -8.0
+theme_override_styles/background = ExtResource("7_gwe5h")
+show_percentage = false

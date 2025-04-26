@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-@export var speed = 400
+@export var speed = 200.0
+@export var powerupAmount := 0
 @onready var hitbox = $HitboxComponent
 @onready var anim: AnimatedSprite2D = $as
-
+@export var gun : GunComponent
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
@@ -13,9 +14,8 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func _process(delta: float) -> void:
-	$ProgressBar.value = $HealthComponent.health
-	print($ProgressBar.value)
-	$CanvasLayer/HUD/Label.text = "Ammo: " + str($GunComponent.mag)
+	$CanvasLayer/HUD/Health.text = str(roundi($HealthComponent.health))
+	$CanvasLayer/HUD/Ammo.text = str($GunComponent.mag)
 	
 	if Input.is_action_pressed("shoot"):
 		$GunComponent.shoot()

@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="hackathon25"
-run/main_scene="uid://boxri8a6sy0f2"
+run/main_scene="uid://dprcjx3abda7b"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [file_customization]
 

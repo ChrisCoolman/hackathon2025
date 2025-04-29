@@ -19,21 +19,18 @@ func makePowerup():
 	makePowerup()
 
 func _on_enemy_spawner_spawner_killed() -> void:
-	spawners -= 1
-	if spawners <= 0:
-		get_tree().change_scene_to_file("res://Scenes/User Interface/main_menu.tscn")
+	win()
 
 func _on_enemy_spawner_2_spawner_killed() -> void:
-	spawners -= 1
-	if spawners <= 0:
-		get_tree().change_scene_to_file("res://Scenes/User Interface/main_menu.tscn")
+	win()
 
 func _on_enemy_spawner_3_spawner_killed() -> void:
-	spawners -= 1
-	if spawners <= 0:
-		get_tree().change_scene_to_file("res://Scenes/User Interface/main_menu.tscn")
+	win()
 
 func _on_enemy_spawner_4_spawner_killed() -> void:
+	win()
+	
+func win():
 	spawners -= 1
 	if spawners <= 0:
-		get_tree().change_scene_to_file("res://Scenes/User Interface/main_menu.tscn")
+		get_tree().change_scene_to_file("res://Scenes/User Interface/win.tscn")
